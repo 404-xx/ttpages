@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fast Flip</title>
+<style type="text/css"> 
+<!-- 
+  body{margin:0;font-family:arial,sans serif;font-size:small;background:#fff}
+  a{color:#00c}
+  img{border:none}
+  form,ul,li{margin:0;padding:0}
+  li{list-style:none;white-space:nowrap}
+
+  #account{padding:1px 3px 7px;float:right}
+  #account a{text-decoration:underline}
+  #email{font-weight:bold}
+  #gbh{border-top:1px solid #c9d7f1;font-size:1px;height:0;position:absolute;top:24px;left:0;width:100%}
+  #controls{margin-top:12px;border-collapse:collapse}
+  #chrome{background:#f0f7f9;border-top:1px solid #6b90da;margin:2px 0 5px 0;padding:0.2em 0.3em}
+  #chrome .option{margin-left:12px}
+  #footer{margin:10px 0;padding:5px;border-top:1px solid #ccc;color:#666;text-align:center;clear:both}
+
+  .spacer{height:10px;clear:both}
+  .sym{font-family:arial unicode ms,arial}
+  .fl{color:#00c}
+
+  #msg{font-weight:bold;top:2px;left:0;width:100%;z-index:1;position:fixed}
+  #msg td{padding:0}
+  .r0,.r1,.r2{background:#fe6}
+  .r0{padding:0 8px;white-space:nowrap}
+  .r1,.r2{height:1px;font-size:1px}
+  .r1{margin:0 1px}
+  .r2{margin:0 2px}
+
+  .dd{display:none;position:absolute;left:0;top:20px;border:1px solid;border-color:#c9d7f1 #36c #36c #a2bae7;z-index:150;background:#fff}
+  .dd a{display:block;padding:.2em .5em;text-decoration:none !important;white-space:nowrap}
+  .dd a:hover{background:#f0f7f9}
+  #mask{position:absolute;top:0;left:0;width:100%;background:#999;opacity:0.4;filter:alpha(opacity=40);z-index:150;display:none}
+
+  table{border-collapse:collapse}
+  td{padding:0}
+
+  .tabs{background-color:#f0f7f9;border-bottom:1px solid #6b90da;padding:5px 3px 3px 7px}
+  .tabs a{padding:2px 5px;margin:0 3px;position:relative;top:1px}
+  .tabs a.selected{padding:2px 4px;background:#fff;color:#000;text-decoration:none;cursor:default;border:1px solid #6b90da;border-bottom-color:#fff;font-weight:bold}
+
+  .group{position:relative;overflow:hidden;height:262px;width:100%}
+  .group .thumb{margin:5px 16px 50px 0;width:202px;height:222px;text-align:center;position:relative}
+  .group .fl{font-size:90%;text-decoration:none}
+  .thumb .border{width:200px;height:220px;border:1px solid #ccc;overflow:hidden}
+  .thumb img{width:200px;height:220px;display:block;margin-bottom:3px}
+  .empty{color:#bbb;font-size:3em;font-weight:bold;padding:60px 40px 0;text-align:center}
+  .zoom-icon{background:url(/static/icons4.png) no-repeat 0 -52px;position:absolute;right:3px;bottom:3px;width:22px;height:22px;display:none}
+  a:hover .zoom-icon{display:block}
+  .title{padding-top:3px}
+
+  .list{border:1px #ccc;border-style:solid none;padding:20px 0 20px 7px}
+  .list a{margin:0 5px}
+  .label{font-weight:bold}
+  .expanded{padding:15px 0}
+  .list,#footer{margin-top:-1px}
+  .caret{clear:both;float:right;width:60px;text-align:center;margin-top:1.5em;position:relative}
+  .caret a{text-decoration:none;padding:0 5px;color:#ddd;display:none}
+  .caret a:hover{color:#0075bd}
+
+  .nav{text-decoration:none;color:#0075bd;font-size:6em;display:block;padding:60px 3px 0;position:absolute;margin-top:5px;height:160px}
+  .nav::-moz-focus-inner{border:0}
+  .thumbs{width:100%;padding:0 5px}
+  .disabled{color:#ddd;cursor:default}
+
+  .pb,.mb{background:url(http://www.google.com/images/nav_logo6.png) no-repeat;width:13px;height:13px;float:left;cursor:pointer;margin-right:6px;font-size:1px}
+  .pb{background-position:-91px -74px}
+  .mb{background-position:-105px -74px}
+-->
+</style>
+</head>
+
+<body>
+  <div style="margin: 3px 5px;">
+    <div id="s0">
+      <div class="caret">
+        <a onclick="return google.move(0,0)" href="#up">▲</a>
+        <a onclick="return google.move(0,1)" href="#down" style="display: inline;">▼</a>
+      </div>
+      <div style="" class="list" id="l0">
+        <div onclick="google.toggle(0)" class="pb"></div>
+        <span class="label">Popular:</span>
+        <a href="/search?q=view%3Apopular&amp;type=fp">Popular</a>
+        <a href="/search?q=view%3Arecent&amp;type=fp">Recent</a>
+        <a href="/search?q=view%3Acontroversial&amp;type=fp">Controversial</a>
+        <a href="/search?q=section%3AHeadlines&amp;type=fp">Headlines</a>
+      </div>
+      
+      <div style="" class="expanded" id="e0">
+        <div class="tabs">
+          <div onclick="google.toggle(0)" class="mb"></div>
+          <span class="label">Popular:</span>
+          <a onclick="return google.show(0,0,'view:popular')" id="t00" href="/search?q=view%3Apopular&amp;type=fp" class="selected">Popular</a>
+          <a onclick="return google.show(0,1,'view:recent')" id="t01" href="/search?q=view%3Arecent&amp;type=fp" class="">Recent</a>
+          <a onclick="return google.show(0,2,'view:controversial')" id="t02" href="/search?q=view%3Acontroversial&amp;type=fp" class="">Controversial</a>
+          <a onclick="return google.show(0,3,'section:Headlines')" id="t03" href="/search?q=section%3AHeadlines&amp;type=fp" class="">Headlines</a>
+        </div>
+        <a style="left: 0pt;" onclick="return google.slide(this,0,0)" class="nav disabled" id="n00" href="#previous">‹</a>
+        <a style="right: 1px;" onclick="return google.slide(this,0,1)" class="nav" id="n01" href="#next">›</a>
+        <div style="margin: 0pt 2.2em;">
+          <div class="group" id="g0">
+            <div id="p00">
+            
+              <table>
+                <tbody>
+                  <tr valign="top">
+                    <td>
+                      <div class="thumb">
+                        <a title="Want a sensitive guy? Use &quot;cuddle spray&quot;! - Broadsheet - Salon.com" href="/view?q=view%3Apopular&amp;a=V8IJcYijGVzPzM&amp;type=fp">
+                          <div class="zoom-icon"></div>
+                          <div class="border">
+                            <img alt="Loading..." src="http://g1.gstatic.com/news/screenshots/QJMQEk5LDw8RRM-tiny.png">
+                          </div>
+                        </a>
+                        <div class="title">
+                          <a class="fl" href="/view?q=view%3Apopular&amp;a=V8IJcYijGVzPzM&amp;type=fp">Want a sensitive guy? Use "cuddle spray"!</a>
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td>
+                      <div class="thumb">
+                        <a title="Oregon Takes a Lesson from Google, Puts Apps in Schools" href="/view?q=view%3Apopular&amp;a=rUIDOWRLENvaaM&amp;type=fp">
+                          <div class="zoom-icon"></div>
+                          <div class="border">
+                            <img alt="Loading..." src="http://g3.gstatic.com/news/screenshots/q9HSBlmQnRy92M-tiny.png">
+                          </div>
+                        </a>
+                        <div class="title">
+                          <a class="fl" href="/view?q=view%3Apopular&amp;a=rUIDOWRLENvaaM&amp;type=fp">Oregon Takes a Lesson from Google, Puts Apps in Schools</a>
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td>
+                      <div class="thumb">
+                        <a title="NASA Balloon Launch Failure Turns Research Platform into One..." href="/view?q=view%3Apopular&amp;a=Q08ydLkAFL7cBM&amp;type=fp">
+                          <div class="zoom-icon"></div>
+                          <div class="border">
+                            <img alt="Loading..." src="http://g2.gstatic.com/news/screenshots/9yXbMXvgkZTG4M-tiny.png">
+                          </div>
+                        </a>
+                        <div class="title">
+                          <a class="fl" href="/view?q=view%3Apopular&amp;a=Q08ydLkAFL7cBM&amp;type=fp">NASA Balloon Launch Failure Turns Research Platform into...</a>
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td>
+                      <div class="thumb">
+                        <a title="How to Build a Kid's Tire..." href="/view?q=view%3Apopular&amp;a=tQkkzuYdq7Pc6M&amp;type=fp">
+                          <div class="zoom-icon"></div>
+                          <div class="border">
+                            <img alt="Loading..." src="http://g1.gstatic.com/news/screenshots/7v41NnszZ_DHiM-tiny.jpg">
+                          </div>
+                        </a>
+                        <div class="title">
+                          <a class="fl" href="/view?q=view%3Apopular&amp;a=tQkkzuYdq7Pc6M&amp;type=fp">How to Build a Kid's Tire Swing &ndash; Project With...</a>
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td>
+                      <div class="thumb">
+                        <a title="Dream Jobs: College Students Get Real" href="/view?q=view%3Apopular&amp;a=c5anUdeArMSvAM&amp;type=fp">
+                          <div class="zoom-icon"></div>
+                          <div class="border">
+                            <img alt="Loading..." src="http://g0.gstatic.com/news/screenshots/4TFrRJe9lY2IxM-tiny.png">
+                          </div>
+                        </a>
+                        <div class="title">
+                          <a class="fl" href="/view?q=view%3Apopular&amp;a=c5anUdeArMSvAM&amp;type=fp">Dream Jobs: College Students Get Real</a>
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td>
+                      <div class="thumb">
+                        <a title="Google Labs projects that should be on your radar" href="/view?q=view%3Apopular&amp;a=v4YcFAkETEnmXM&amp;type=fp">
+                          <div class="zoom-icon"></div>
+                          <div class="border"><img alt="Loading..." src="http://g3.gstatic.com/news/screenshots/l4vZxLMnqeNUCM-tiny.png"></div>
+                        </a>
+                        <div class="title">
+                          <a class="fl" href="/view?q=view%3Apopular&amp;a=v4YcFAkETEnmXM&amp;type=fp">Google Labs projects that should be on your radar</a>
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td>
+                      <div class="thumb">
+                        <a title="Detroit leads the way in urban farming" href="/view?q=view%3Apopular&amp;a=2QOCwa1Pzx85EM&amp;type=fp">
+                          <div class="zoom-icon"></div>
+                          <div class="border"><img alt="Loading..." data="http://g0.gstatic.com/news/screenshots/Vq8_p_YQzp1RBM-tiny.jpg"></div>
+                        </a>
+                        <div class="title">
+                          <a class="fl" href="/view?q=view%3Apopular&amp;a=2QOCwa1Pzx85EM&amp;type=fp">Detroit leads the way in urban farming</a>
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td>
+                      <div class="thumb">
+                        <a title="Can Plastic Jungle Create A Market Around Gift Cards?" href="/view?q=view%3Apopular&amp;a=nsT_h8Auo8sCJM&amp;type=fp">
+                          <div class="zoom-icon"></div>
+                          <div class="border"><img alt="Loading..." data="http://g0.gstatic.com/news/screenshots/aFjgqEvMnC5fkM-tiny.png"></div>
+                        </a>
+                        <div class="title">
+                          <a class="fl" href="/view?q=view%3Apopular&amp;a=nsT_h8Auo8sCJM&amp;type=fp">Can Plastic Jungle Create A Market Around Gift Cards?</a>
+                        </div>
+                      </div>
+                    </td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div id="s3">
+      <div class="caret">
+        <a onclick="return google.move(3,0)" href="#up" style="display: inline;">▲</a>
+        <a onclick="return google.move(3,1)" href="#down" style="display: inline;">▼</a>
+      </div>
+      <div class="list" id="l3">
+        <div onclick="google.toggle(3)" class="pb"></div>
+        <span class="label">Sections:</span>
+        <a href="/search?q=section%3A%22Politics%22&amp;type=fp">Politics</a>
+        <a href="/search?q=section%3A%22Business%22&amp;type=fp">Business</a>
+        <a href="/search?q=section%3A%22U.S.%22&amp;type=fp">U.S.</a>
+        <a href="/search?q=section%3A%22World%22&amp;type=fp">World</a>
+        <a href="/search?q=section%3A%22Sports%22&amp;type=fp">Sports</a>
+        <a href="/search?q=section%3A%22Sci/Tech%22&amp;type=fp">Sci/Tech</a>
+        <a href="/search?q=section%3A%22Entertainment%22&amp;type=fp">Entertainment</a>
+        <a href="/search?q=section%3A%22Health%22&amp;type=fp">Health</a>
+        <a href="/search?q=section%3A%22Opinion%22&amp;type=fp">Opinion</a>
+        <a href="/search?q=section%3A%22Travel%22&amp;type=fp">Travel</a>
+        <a href="/search?q=section%3A%22Environment%22&amp;type=fp">Environment</a>
+      </div>
+    </div>
+    
+    <div id="s2">
+      <div class="caret">
+        <a onclick="return google.move(2,0)" href="#up" style="display: inline;">▲</a>
+        <a onclick="return google.move(2,1)" href="#down" style="display: inline;">▼</a>
+      </div>
+      <div style="" class="list" id="l2">
+        <div onclick="google.toggle(2)" class="pb"></div>
+        <span class="label">Topics:</span>
+        <a href="/search?q=Gordon%20Brown&amp;type=fp">Gordon Brown</a>
+        <a href="/search?q=Weight%20Loss&amp;type=fp">Weight Loss</a>
+        <a href="/search?q=Liverpool&amp;type=fp">Liverpool</a>
+        <a href="/search?q=Kentucky%20Oaks&amp;type=fp">Kentucky Oaks</a>
+        <a href="/search?q=Unrivaled%20Belle&amp;type=fp">Unrivaled Belle</a>
+        <a href="/search?q=Furry%20Vengeance&amp;type=fp">Furry Vengeance</a>
+        <a href="/search?q=Chelsea%20Handler&amp;type=fp">Chelsea Handler</a>
+      </div>
+    </div>
+    
+    <div id="s1">
+      <div class="caret">
+        <a onclick="return google.move(1,0)" href="#up" style="display: inline;">▲</a>
+        <a onclick="return google.move(1,1)" href="#down">▼</a>
+      </div>
+      <div style="" class="list" id="l1">
+        <div onclick="google.toggle(1)" class="pb"></div>
+        <span class="label">Sources:</span>
+        <a href="/search?q=source%3A%22Center%20for%20Investigative%20Reporting%22&amp;type=fp">Center for Investigative Reporting</a>
+        <a href="/search?q=source%3A%22Huffington%20Post%22&amp;type=fp">Huffington Post</a>
+        <a href="/search?q=source%3A%22Information%20Week%22&amp;type=fp">Information Week</a>
+        <a href="/search?q=source%3A%22Mashable%22&amp;type=fp">Mashable</a>
+        <a href="/search?q=source%3A%22PC%20Magazine%22&amp;type=fp">PC Magazine</a>
+        <a href="/search?q=source%3A%22Los%20Angeles%20Times%22&amp;type=fp">Los Angeles Times</a>
+        <a href="/sources">All sources »</a>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery PopBox</title>
+<style type="text/css">
+
+a:link {
+color:#336699;
+text-decoration:none;
+}
+
+#popup_bg{
+opacity:.15;
+filter:alpha(opacity=15);
+position: fixed;
+background:#000;
+position:absolute;
+}
+
+#popup_body form{ padding:0;margin:0;border:1px solid #fff; }
+
+#popup_close{font-family:"Comic Sans MS";position:absolute;right:0;top:0;z-index:1;padding:0 .3em;color:#aaa;}
+
+#popup_close:hover{
+color:#f00;
+border:1px solid #fff;
+}
+
+#popup_body{
+display: block;
+font-size:12px;
+background:#fff;
+border:1px solid #bbb;
+padding:15px;
+position:fixed;
+z-index:101;
+left:0pt;
+top:0pt;
+position:absolute;
+}
+
+#popup_box{visibility:hidden;}
+</style>
+</head>
+
+<body>
+
+<a href="#popbox" class="popbox">click me</a>
+
+<div id="popup_box">
+  <div id="popup_bg"></div>
+  <div id="popup_body">
+    <a id="popup_close" href="javascript:void(0);">X</a>
+    <span id="popup_loading">加载中, 请稍候...</span>
+    <div id="popup_content"></div>
+  </div>
+</div>
+
+<script language="javascript" src="js/jquery-1.4.2.min.js"></script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+
+  var popbox={
+    loading:function(){
+      var b=$("#popup_body");
+      var bH=b.innerHeight();
+      var bW=b.innerWidth();
+      var bL=$(window).width()/2 - bW/2;
+      var bT=$(window).height()/3 - bH/2;
+      b.css({"left":bL, "top":bT});
+      $("#popup_bg").css({"height":bH+22,"width":bW+22,"left":bL-10,"top":bT-10,"z-index":100});
+      $("#popup_box").css({"visibility":"visible"}).hide().fadeIn("slow");
+    },
+    
+    close:function(){
+      $("#popup_box").fadeOut("slow",function(){
+        $("#popup_content").empty();
+        $("#popup_bg").removeAttr("style");
+        $("#popup_body").removeAttr("style");
+        $(this).removeAttr("style");
+      });
+    }
+  }
+  
+  $(".popbox").click(function(){popbox.loading();});
+  $("#popup_close").click(function(){popbox.close();});
+});
+</script>
+
+</body>
+</html>

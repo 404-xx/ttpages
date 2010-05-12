@@ -1,0 +1,80 @@
+body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:small;background:#fff}
+a{color:#03c}
+img{border:none}
+form,ul,li{margin:0;padding:0}
+li{list-style:none;word-spacing:normal;}
+
+#wrapper{margin: 3px 5px;}
+
+#account{padding:1px 3px 7px;float:right;position:relative;bottom:2px;}
+#account a{text-decoration:underline}
+#email{font-weight:bold}
+#gbh{border-top:1px solid #c9d7f1;font-size:1px;height:0;position:absolute;top:24px;left:0;width:100%}
+#controls{margin-top:12px;border-collapse:collapse}
+#chrome{background:#f0f7f9;border-top:1px solid #6b90da;margin:2px 0 5px 0;padding:0.2em 0.3em}
+#chrome .option{margin-left:12px}
+#footer{margin:10px 0;padding:5px;border-top:1px solid #ccc;color:#666;text-align:center;clear:both}
+
+.spacer{height:10px;clear:both}
+.sym{font-family:arial unicode ms,arial}
+.fl{color:#77c}
+
+#msg{font-weight:bold;top:2px;left:0;width:100%;z-index:1;position:fixed}
+#msg td{padding:0}
+.r0,.r1,.r2{background:#fe6}
+.r0{padding:0 8px;white-space:nowrap}
+.r1,.r2{height:1px;font-size:1px}
+.r1{margin:0 1px}
+.r2{margin:0 2px}
+
+.dd{display:none;position:absolute;left:0;top:20px;border:1px solid;border-color:#c9d7f1 #36c #36c #a2bae7;z-index:150;background:#fff}
+.dd a{display:block;padding:.2em .5em;text-decoration:none !important;white-space:nowrap}
+.dd a:hover{background:#f0f7f9}
+#mask{position:absolute;top:0;left:0;width:100%;background:#999;opacity:0.4;filter:alpha(opacity=40);z-index:150;display:none}
+
+table{border-collapse:collapse}
+td{padding:0}
+
+.tabs{background-color:#F0F7F9;border-bottom:1px solid #6B90DA;padding:3px 3px 2px 7px;}
+.tabs a{margin:0 3px;padding:2px 5px;position:relative;top:1px;}
+.tabs a.selected{padding:1px 5px 2px;padding:1px 5px\9;background:#fff;color:#000;text-decoration:none;cursor:default;border:1px solid #6b90da;border-bottom-color:#fff;font-weight:bold;}
+
+.group{position:relative;overflow:hidden;width:100%;padding:1px auto;}
+.group .thumb{margin:5px 10px 5px 0;width:312px;height:312px;text-align:center;position:relative}
+.group .fl{font-size:90%;text-decoration:none}
+.thumb .border{width:310px;height:310px;border:1px solid #ccc;overflow:hidden}
+.thumb img, .cover b, .cover span{width:310px;height:310px;display:block;}
+.cover b{font-weight:bold;border:1px solid #ccc;}
+.cover span.read-more {background:#619000 url(../images/read-more.png) no-repeat scroll center center;}
+.cover span.modify {background:#619000 url(../images/modify.png) no-repeat scroll center center;}
+.cover span.addnew {background:#ccc url(../images/addnew.png) no-repeat scroll center center;filter:alpha(opacity=40);opacity:0.4;}
+.cover span {position:absolute;top:0;left:0;filter:alpha(opacity=0);opacity:0;}
+.cover a:hover span {filter:alpha(opacity=70);opacity:0.7;}
+
+.empty{color:#bbb;font-size:3em;font-weight:bold;padding:60px 40px 0;text-align:center}
+.zoom-icon{background:url(http://fastflip.googlelabs.com/static/icons4.png) no-repeat 0 -52px;position:absolute;right:3px;bottom:3px;width:22px;height:22px;display:none}
+a:hover .zoom-icon{display:block}
+.title{padding-top:3px}
+
+.list{border:1px #ccc;border-style:solid none;padding:20px 0 20px 7px}
+.list a{margin:0 5px}
+.label{font-weight:bold}
+.expanded{padding:15px 0 7px;}
+.list,#footer{margin-top:-1px}
+.caret{float:right;width:60px;text-align:center;position:relative;margin-top:1.5em;}
+.caret a{text-decoration:none;padding:0 5px;color:#ddd;display:none}
+.caret a:hover{color:#0075bd}
+
+.prevBtn{left:0pt;}
+.nextBtn{right:1px;}
+.nav{text-decoration:none;color:#0075bd;font-size:7em;display:block;padding:120px 3px 0;position:absolute;margin-top:5px;height:230px}
+.nav::-moz-focus-inner{border:0}
+.disabled{color:#ddd;cursor:default}
+
+.pb,.mb{background:url(http://www.google.com/images/nav_logo6.png) no-repeat;width:13px;height:13px;float:left;cursor:pointer;margin-right:6px;font-size:1px}
+.pb{background-position:-91px -74px}
+.mb{background-position:-105px -74px}
+
+.gallery{margin:0pt 3em;/*height:322px;*/}
+.group ul {overflow:hidden;white-space:nowrap;}
+.group li {display:inline-block;zoom:1;display:inline\9;}

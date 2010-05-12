@@ -1,0 +1,561 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>淘特 - 只淘喜欢的！</title>
+<style type="text/css"> 
+<!-- 
+body{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:small;background:#fff}
+a{color:#03c}
+img{border:none}
+form,ul,li{margin:0;padding:0}
+li{list-style:none;word-spacing:normal;}
+
+#wrapper{margin: 3px 5px;}
+
+#account{padding:1px 3px 7px;float:right;position:relative;bottom:2px;}
+#account a{text-decoration:underline}
+#email{font-weight:bold}
+#gbh{border-top:1px solid #c9d7f1;font-size:1px;height:0;position:absolute;top:24px;left:0;width:100%}
+#controls{margin-top:12px;border-collapse:collapse}
+#chrome{background:#f0f7f9;border-top:1px solid #6b90da;margin:2px 0 5px 0;padding:0.2em 0.3em}
+#chrome .option{margin-left:12px}
+#footer{margin:10px 0;padding:5px;border-top:1px solid #ccc;color:#666;text-align:center;clear:both}
+
+.spacer{height:10px;clear:both}
+.sym{font-family:arial unicode ms,arial}
+.fl{color:#77c}
+
+#msg{font-weight:bold;top:2px;left:0;width:100%;z-index:1;position:fixed}
+#msg td{padding:0}
+.r0,.r1,.r2{background:#fe6}
+.r0{padding:0 8px;white-space:nowrap}
+.r1,.r2{height:1px;font-size:1px}
+.r1{margin:0 1px}
+.r2{margin:0 2px}
+
+.dd{display:none;position:absolute;left:0;top:20px;border:1px solid;border-color:#c9d7f1 #36c #36c #a2bae7;z-index:150;background:#fff}
+.dd a{display:block;padding:.2em .5em;text-decoration:none !important;white-space:nowrap}
+.dd a:hover{background:#f0f7f9}
+#mask{position:absolute;top:0;left:0;width:100%;background:#999;opacity:0.4;filter:alpha(opacity=40);z-index:150;display:none}
+
+table{border-collapse:collapse}
+td{padding:0}
+
+.tabs{background-color:#F0F7F9;border-bottom:1px solid #6B90DA;padding:3px 3px 2px 7px;}
+.tabs a{margin:0 3px;padding:2px 5px;position:relative;top:1px;}
+.tabs a.selected{padding:1px 5px 2px;padding:1px 5px\9;background:#fff;color:#000;text-decoration:none;cursor:default;border:1px solid #6b90da;border-bottom-color:#fff;font-weight:bold;}
+
+.group{position:relative;overflow:hidden;width:100%;padding:1px auto;}
+.group .thumb{margin:5px 10px 5px 0;width:312px;height:312px;text-align:center;position:relative}
+.group .fl{font-size:90%;text-decoration:none}
+.thumb .border{width:310px;height:310px;border:1px solid #ccc;overflow:hidden}
+.thumb img{width:310px;height:310px;display:block;}
+.empty{color:#bbb;font-size:3em;font-weight:bold;padding:60px 40px 0;text-align:center}
+.zoom-icon{background:url(http://fastflip.googlelabs.com/static/icons4.png) no-repeat 0 -52px;position:absolute;right:3px;bottom:3px;width:22px;height:22px;display:none}
+a:hover .zoom-icon{display:block}
+.title{padding-top:3px}
+
+.list{border:1px #ccc;border-style:solid none;padding:20px 0 20px 7px}
+.list a{margin:0 5px}
+.label{font-weight:bold}
+.expanded{padding:15px 0 7px;}
+.list,#footer{margin-top:-1px}
+.caret{float:right;width:60px;text-align:center;position:relative;margin-top:1.5em;}
+.caret a{text-decoration:none;padding:0 5px;color:#ddd;display:none}
+.caret a:hover{color:#0075bd}
+
+.prevBtn{left:0pt;}
+.nextBtn{right:1px;}
+.nav{text-decoration:none;color:#0075bd;font-size:7em;display:block;padding:120px 3px 0;position:absolute;margin-top:5px;height:230px}
+.nav::-moz-focus-inner{border:0}
+.disabled{color:#ddd;cursor:default}
+
+.pb,.mb{background:url(http://www.google.com/images/nav_logo6.png) no-repeat;width:13px;height:13px;float:left;cursor:pointer;margin-right:6px;font-size:1px}
+.pb{background-position:-91px -74px}
+.mb{background-position:-105px -74px}
+
+.gallery{margin:0pt 3em;/*height:322px;*/}
+.group ul {overflow:hidden;white-space:nowrap;}
+.group li {display:inline-block;zoom:1;display:inline\9;}
+-->
+</style>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="gbh"></div>
+    <div id="account">
+      <a href="#">生成网店</a>
+      <a href="#">制作传单</a>
+      <a href="#">店主登录</a>
+    </div>
+    <div style="clear: both;"></div>
+    
+    <div style=" padding:5px 0;">
+      <p>Logo Here</p>
+    </div>
+    
+    <div class="col">
+
+      <div class="caret">
+        <a href="#up">▲</a>
+        <a style="display: inline;" href="#down">▼</a>
+      </div>
+     
+      <div class="list" style="display: none;">      
+        <div class="pb"></div>
+        <span class="label">全部:</span>
+        <a href="#" id="cat-1">新品</a>
+        <a href="#" id="cat-2">热门</a>
+        <a href="#" id="cat-3">推荐</a>
+      </div>
+     
+      <div class="expanded">
+        <div class="tabs">
+          <div class="mb"></div>
+          <span class="label">全部:</span>
+          <a href="#" class="selected" id="tab-1">新品</a>
+          <a href="#" id="tab-2">热门</a>
+          <a href="#" id="tab-3">推荐</a>
+        </div>
+       
+        <a href="#previous" class="nav prevBtn disabled">‹</a>
+        <a href="#next" class="nav nextBtn">›</a>
+       
+        <div class="gallery">
+          <div class="group">
+            <div id="gallery-1" class="gallery-col">
+              <ul>
+                <li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border">
+                        <img src="images/anno_dim_draw_8.jpg" alt="Loading...">
+                      </div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/anno_dim_draw_7.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/anno_dim_draw_5.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/anno_dim_draw_6.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/01_310x310.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/02_310x310.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/03_310x310.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/04_310x310.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/05_310x310.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/06_310x310.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/07_310x310.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/08_310x310.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/09_310x310.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li><li>
+                  <div class="thumb">
+                    <a href="#">
+                      <div class="zoom-icon"></div>
+                      <div class="border"><img src="images/10_310x310.jpg" alt="Loading..."></div>
+                    </a>
+                  </div>
+                </li>
+                
+              </ul>
+            </div>
+            
+            <div id="gallery-2" class="gallery-col" style="display:none;"></div>
+            <div id="gallery-3" class="gallery-col" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <div class="col">
+      <div class="caret">
+        <a style="display: inline;" href="#up">▲</a>
+        <a style="display: inline;" href="#down">▼</a>
+      </div>
+      <div class="list">
+        <div class="pb"></div>
+        <span class="label">酷玩:</span>
+        <a href="#" id="cat-5">Politics</a>
+        <a href="#" id="cat-6">Business</a>
+        <a href="#" id="cat-7">U.S.</a>
+        <a href="#" id="cat-8">情调</a>
+        <a href="#" id="cat-9">模型</a>
+        <a href="#" id="cat-10">玩偶</a>
+        <a href="#" id="cat-11">卡通</a>
+        <a href="#" id="cat-36">办公用品</a>
+        <a href="#" id="cat-12">Health</a>
+        <a href="#" id="cat-13">Opinion</a>
+        <a href="#" id="cat-14">Travel</a>
+        <a href="#" id="cat-15">Environment</a>
+      </div>
+      <div class="expanded" style="display: none;">
+        <div class="tabs">
+          <div class="mb"></div>
+          <span class="label">酷玩:</span>
+          <a href="#" id="tab-5">Politics</a>
+          <a href="#" id="tab-6">Business</a>
+          <a href="#" id="tab-7">U.S.</a>
+          <a href="#" id="tab-8">情调</a>
+          <a href="#" id="tab-9">模型</a>
+          <a href="#" id="tab-10">玩偶</a>
+          <a href="#" id="tab-11">卡通</a>
+          <a href="#" id="tab-36">办公用品</a>
+          <a href="#" id="tab-12">Health</a>
+          <a href="#" id="tab-13">Opinion</a>
+          <a href="#" id="tab-14">Travel</a>
+          <a href="#" id="tab-15">Environment</a>
+        </div>
+        
+        <a href="#previous" class="nav prevBtn disabled">‹</a>
+        <a href="#next" class="nav nextBtn">›</a>
+        
+        <div class="gallery">
+          <div class="group">
+            <div id="gallery-5" class="gallery-col"></div>
+            <div id="gallery-6" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-7" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-8" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-9" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-10" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-11" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-12" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-13" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-14" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-15" class="gallery-col" style="display: none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="caret">
+        <a style="display: inline;" href="#up">▲</a>
+        <a style="display: inline;" href="#down">▼</a>
+      </div>
+      <div class="list">
+        <div class="pb"></div>
+        <span class="label">室内:</span>
+        <a href="#" id="cat-16">创意家居</a>
+        <a href="#" id="cat-17">装饰</a>
+        <a href="#" id="cat-18">小家电</a>
+        <a href="#" id="cat-19">Charlie Crist</a>
+        <a href="#" id="cat-20">Western Conference</a>
+        <a href="#" id="cat-21">Marc Savard</a>
+        <a href="#" id="cat-22">Credit</a>
+      </div>
+      <div class="expanded" style="display: none;">
+        <div class="tabs">
+          <div class="mb"></div>
+          <span class="label">室内:</span>
+          <a href="#" id="tab-16">创意家居</a>
+          <a href="#" id="tab-17">装饰</a>
+          <a href="#" id="tab-18">小家电</a>
+          <a href="#" id="tab-19">Charlie Crist</a>
+          <a href="#" id="tab-20">Western Conference</a>
+          <a href="#" id="tab-21">Marc Savard</a>
+          <a href="#" id="tab-22">Credit</a>
+        </div>
+        
+        <a href="#previous" class="nav prevBtn disabled">‹</a>
+        <a href="#next" class="nav nextBtn">›</a>
+        
+        <div class="gallery">
+          <div class="group">
+            <div id="gallery-16" class="gallery-col"></div>
+            <div id="gallery-17" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-18" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-19" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-20" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-21" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-22" class="gallery-col" style="display: none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col">
+      <div class="caret">
+        <a style="display: inline;" href="#up">▲</a>
+        <a href="#down">▼</a>
+      </div>
+      <div class="list">
+        <div class="pb"></div>
+        <span class="label">礼品:</span>
+        <a href="#" id="cat-28">送女友</a>
+        <a href="#" id="cat-35">送男友</a>
+        <a href="#" id="cat-34">送情侣</a>
+        <a href="#" id="cat-33">送朋友</a>
+        <a href="#" id="cat-30">送同事</a>
+        <a href="#" id="cat-32">送孩子</a>
+        <a href="#" id="cat-31">送长辈</a>
+        <a href="#" id="cat-32">送家人</a>
+      </div>
+      <div class="expanded" style="display: none;">
+        <div class="tabs">
+          <div class="mb"></div>
+          <span class="label">礼品:</span>
+          <a href="#" id="tab-28">送女友</a>
+          <a href="#" id="tab-35">送男友</a>
+          <a href="#" id="tab-34">送情侣</a>
+          <a href="#" id="tab-33">送朋友</a>
+          <a href="#" id="tab-30">送同事</a>
+          <a href="#" id="tab-32">送孩子</a>
+          <a href="#" id="tab-31">送长辈</a>
+          <a href="#" id="tab-32">送家人</a>
+        </div>
+        
+        <a href="#previous" class="nav prevBtn disabled">‹</a>
+        <a href="#next" class="nav nextBtn">›</a>
+        
+        <div class="gallery">
+          <div class="group">
+            <div id="gallery-28" class="gallery-col"></div>
+            <div id="gallery-29" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-30" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-31" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-32" class="gallery-col" style="display: none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col">
+      <div class="caret">
+        <a style="display: inline;" href="#up">▲</a>
+        <a href="#down">▼</a>
+      </div>
+      <div class="list">
+        <div class="pb"></div>
+        <span class="label">品牌:</span>
+        <a href="#" id="cat-23">Since1984</a>
+        <a href="#" id="cat-24">有乐创意精品店</a>
+        <a href="#" id="cat-25">Business Week</a>
+        <a href="#" id="cat-26">Slate</a>
+        <a href="#" id="cat-27">Reuters</a>
+        <a href="#" id="cat-28">Information Week</a>
+        <a href="#" id="cat-29">All sources »</a>
+      </div>
+      <div class="expanded" style="display: none;">
+        <div class="tabs">
+          <div class="mb"></div>
+          <span class="label">品牌:</span>
+          <a href="#" id="tab-23">Since1984</a>
+          <a href="#" id="tab-24">有乐创意精品店</a>
+          <a href="#" id="tab-25">Business Week</a>
+          <a href="#" id="tab-26">Slate</a>
+          <a href="#" id="tab-27">Reuters</a>
+          <a href="#" id="tab-28">Information Week</a>
+          <a href="#" id="tab-29">All sources »</a>
+        </div>
+        
+        <a href="#previous" class="nav prevBtn disabled">‹</a>
+        <a href="#next" class="nav nextBtn">›</a>
+        
+        <div class="gallery">
+          <div class="group">
+            <div id="gallery-23" class="gallery-col"></div>
+            <div id="gallery-24" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-25" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-26" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-27" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-28" class="gallery-col" style="display: none;"></div>
+            <div id="gallery-29" class="gallery-col" style="display: none;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="footer">© 2010 Taotter - 
+      <a href="#">使用条款</a> - 
+      <a href="#">反馈建议</a> - 
+      <a href="#">关于淘特</a>
+    </div>
+    
+  </div>
+  
+<script language="javascript" src="js/jquery-1.4.2.min.js"></script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+  // toggle#expand
+  $(".pb").click(function(){
+    var tabs = $(this).parent(".list").hide().next(".expanded").show().find(".tabs");
+    if(tabs.find("a.selected").size() === 0){
+      tabs.find("a:first").click();
+    }
+  });
+  $(".list a").click(function(){
+    $(this).parent(".list").hide().next(".expanded").show();
+    var catId=$(this).attr("id").split('-')[1];
+    $("#tab-"+catId).click();
+  });
+  
+  // toggle#back
+  $(".mb").click(function(){
+    $(this).closest(".expanded").hide().prev(".list").show();
+  });
+  
+  // trigger click event on ".tabs a"
+  $('.tabs a').bind('click',function(){
+    if(false === $(this).hasClass("selected")){
+      $(this).addClass("selected").siblings().removeClass("selected");
+      var catId=$(this).attr("id").split('-')[1];
+      $("#gallery-"+catId).show().siblings().hide();
+    }
+  });
+  
+  // init move-bar of cols
+  var caretNum=$(".caret").size();
+  if(caretNum === 1){
+    $(".caret").find("a").removeAttr("style");
+  }else if(caretNum > 1){
+    $(".caret:first").find('a[href="#up"]').removeAttr("style").siblings('a[href="#down"]').css({"display":"inline"});
+    $(".caret:last").find('a[href="#down"]').removeAttr("style").siblings('a[href="#up"]').css({"display":"inline"});
+  }
+  
+  // move down
+  $('a[href="#down"]').click(function(){
+    var currentCol=$(this).closest(".col");
+    var nextCol=currentCol.next(".col");
+    if(nextCol.hasClass("col")){
+      // moving down
+      currentCol.insertAfter(nextCol);
+      // check if end or not
+      if(currentCol.next().hasClass("col")){ // if not end
+        $(this).parent().children("a").css({"display":"inline"});
+      }else{ // if it is ending
+        $(this).removeAttr("style").siblings('a[href="#up"]').css({"display":"inline"});
+        currentCol.prev().find(".caret a").css({"display":"inline"});
+      }
+      // reset beginning
+      $(".caret:first").find('a[href="#up"]').removeAttr("style");
+    }
+  });
+  
+  // move up
+  $('a[href="#up"]').click(function(){
+    var currentCol=$(this).closest(".col");
+    var prevCol=currentCol.prev(".col");
+    if(prevCol.hasClass("col")){
+      // moving up
+      currentCol.insertBefore(prevCol);
+      // check if begin or not
+      if(currentCol.prev().hasClass("col")){ // if not begin
+        $(this).parent().children("a").css({"display":"inline"});
+      }else{ // if it is beginning
+        $(this).removeAttr("style").siblings('a[href="#down"]').css({"display":"inline"});
+        currentCol.next().find(".caret a").css({"display":"inline"});
+      }
+      // reset ending
+      $(".caret:last").find('a[href="#down"]').removeAttr("style");
+    }
+  });
+  
+  // slide
+  $("a.nav").click(function(){
+    if($(this).hasClass("disabled")) return false;
+    var gallery=$(this).parent(".expanded").find(".gallery-col:visible");
+    var gW=gallery.width();
+    var lW=gallery.find("li:first").width();
+    var n=Math.floor(gW/lW);
+    var ul=gallery.find("ul:first");
+    var marginLeftW=parseInt(ul.css("margin-left"));
+    var s=ul.find("li").size();
+    var sW=s*lW,nW=n*lW;
+    if($(this).hasClass("nextBtn")){
+      var scrollW=marginLeftW-nW;
+      var m=(sW+scrollW)/lW;
+      var siblingBtn=$(this).prev(".prevBtn");
+      if(m<=n){scrollW=gW-sW+10;$(this).addClass("disabled");}
+    }else if($(this).hasClass("prevBtn")){
+      var siblingBtn=$(this).next(".nextBtn");
+      var scrollW=marginLeftW+nW;
+      if(Math.abs(marginLeftW)<=nW){
+        scrollW=0;$(this).addClass("disabled");
+      }else if(marginLeftW+sW-10 === gW){
+        scrollW=2*nW-sW;
+      }
+    }
+    ul.animate({"margin-left":scrollW+"px"},{
+      duration:500, 
+      complete:function(){
+        if(siblingBtn.hasClass("disabled")) siblingBtn.removeClass("disabled");
+      }
+    });
+  });
+  
+});
+</script>
+</body>
+</html>

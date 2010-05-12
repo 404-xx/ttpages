@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>淘特网站管理系统</title>
+<link rel="stylesheet" type="text/css" href="css/default.css" />
+<style type="text/css">
+<!--
+
+#container {
+	width:100%;
+	text-align: left;
+	margin:0 auto;
+	padding:5px 0 10px 0;
+} 
+
+#sidebar {
+	min-height:400px;
+	float:left;
+	width:185px;
+	padding:5px 0;
+	border-right:3px solid #E5ECF9;
+}
+#mainContent {
+	margin:0 0 0 200px;
+	padding:5px 0;
+}
+.clearfloat {
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+/***** sidebar *****/
+.navItems li{padding:0 0 0.5em;padding-left:0.5em;line-height:1.5em}
+.navItems ul{margin:0;padding:0 0 0 0.5em;}
+.navItems ul li{padding-left:0.5em;}
+.navItems li a, .navItems li span, .navItems ul li a {padding-left:0.5em;}
+.itemSection{color:#333;}
+.navItems .itemSelected{
+color:#03c;
+display:block;
+font-weight:bold;
+line-height:1.8;
+background-color:#e5ecf9;
+margin-right:-1px;
+border-top-left-radius:4px;
+-moz-border-radius-topleft:4px;
+-webkit-border-top-left-radius:4px;
+border-bottom-left-radius:4px;
+-moz-border-radius-bottomleft:4px;
+-webkit-border-bottom-left-radius:4px
+}
+
+/***** mainContent *****/
+.borderForm {
+border:1px solid #ccc;
+color:#464646;
+padding:0 10px 10px 10px;
+width:428px;
+float:left;
+margin-right:15px;
+}
+
+.borderForm, fieldset.borderForm legend {
+-moz-border-radius:8px;
+-webkit-border-radius:8px;
+}
+
+fieldset.borderForm legend {
+font-weight:bold;
+margin:0;
+padding:5px 8px;
+border:1px solid #ccc;
+}
+
+.borderForm li {
+list-style:none;
+margin:3px 0;
+padding:3px 0;
+}
+
+.borderForm li label {
+font-weight:normal;
+margin:4px 2px 0 0;
+padding:3px;
+width:120px;
+float:left;
+text-align:right;
+}
+
+input.txt, textarea{
+margin:4px 4px 0 0;
+padding:2px;
+font:12px/12px Arial,sans-serif;
+}
+
+.gbutton{
+border-width:1px;
+border-style:solid;
+border-color:#bbb #999 #999 #bbb;
+border-radius:2px;
+-webkit-border-radius:2px;
+-moz-border-radius:2px;
+font:13px/13px Arial,sans-serif;
+color:#000;
+text-align:middle;
+text-decoration:none;
+text-shadow:0 1px 1px rgba(255,255,255,1);
+background:#eee;
+background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#ddd));
+background:-moz-linear-gradient(top,#fff,#ddd);
+filter:progid:DXImageTransform.Microsoft.Gradient(EndColorstr='#dddddd',StartColorstr='#ffffff',GradientType=0);
+cursor:pointer;
+margin:0;
+display:inline;
+display:-moz-inline-box;
+display:inline-block;
+*overflow:visible;
+padding:3px 5px 4px
+}
+.gbutton{*display:inline}
+.gbutton:focus,.gbutton:hover{border-color:#666}
+.gbutton:active{
+color:#000;
+background-color:#bbb;
+border-color:#999 #bbb #bbb #999;
+background-image:-webkit-gradient(linear,0 0,0 100%,from(#ddd),to(#fff));
+background-image:-moz-linear-gradient(top,#ddd,#fff);
+filter:progid:DXImageTransform.Microsoft.Gradient(EndColorstr='#ffffff',StartColorstr='#dddddd',GradientType=0);
+}
+.gbutton[disabled],.gbutton[disabled]:active,.gbutton[disabled]:hover{
+color:#666;
+border-color:#ddd;
+background-color:#f3f3f3;
+background-image:none;
+text-shadow:none;
+cursor:auto
+}
+.gbutton{padding:5px 8px 4px\9}
+.gbutton{*padding:4px 7px 2px}
+.gbutton{padding-top:3px;padding-bottom:2px}
+
+.action{text-decoration:underline;color:#03c}
+.toggle{
+background-position:left center;
+background-repeat:no-repeat;
+cursor:pointer;
+padding-left:16px;
+}
+.minus{background-image:url("icons/minus.gif")}
+.plus{background-image:url("icons/plus.gif")}
+#importFromTb{border-bottom:1px dashed #E5ECF9;margin-bottom:10px;padding-bottom:10px;}
+-->
+</style>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="account">
+      <a href="#">退出</a>
+    </div>
+    <div style="clear: both;"></div>
+    
+    <div id="chrome"><b>淘特网站管理系统</b></div>
+    
+    <div id="container">
+      <div id="sidebar">
+        <ul class="navItems">
+          <li>
+            <span class="itemSection">宝贝</span>
+            <ul>
+              <li><a class="itemSelected" href="#">添加</a></li>
+              <li><a href="#">审核</a></li>
+              <li><a href="#">查看</a></li>
+            </ul>
+          </li>
+          <li>
+            <span class="itemSection">分类</span>
+            <ul>
+              <li><a href="#">新建</a></li>
+              <li><a href="#">查看</a></li>
+            </ul>
+          </li>
+          <li>
+            <span class="itemSection">店铺</span>
+            <ul>
+              <li><a href="#">添加</a></li>
+              <li><a href="#">查看</a></li>
+            </ul>
+          </li>
+          <li>
+            <span class="itemSection">设置</span>
+            <ul>
+              <li><a href="#">同步</a></li>
+              <li><a href="#">排序</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      
+      <div id="mainContent">
+        
+      <fieldset class="borderForm">
+      <legend>添加商品</legend>
+          <p><span class="action toggle minus">从淘宝网上导入商品</span></p>
+          <div id="importFromTb">
+            <form action="/" method="post">
+              <ul>
+                <li>
+                    <label for="taobao_seller_nick">淘宝卖家昵称：</label>
+                    <input type="text" size="45" class="txt" id="taobao_seller_nick" name="taobao_seller_nick">
+                </li>
+                  
+                  <li>
+                    <label for="taobao_item_url">淘宝商品网址：</label>
+                    <input type="text" size="45" class="txt" id="taobao_item_url" name="taobao_item_url">
+                </li>
+                  
+                  <li>
+                    <label>&nbsp;</label>
+                    <input type="button" class="gbutton" value="导入数据" />&nbsp;
+                    <a href="#">怎么导入?</a>
+                </li>
+                  
+               </ul>
+            </form>
+          </div>
+          
+          <form action="/" method="post">
+            <ul>
+                <li>
+                  <label for="item_category">所属类别：</label>
+                  <select name="item_category" id="item_category">
+                    <option value="1">默认分类</option>
+                  </select>
+                  <br class="clearfloat" />
+                </li>
+                
+                <li>
+                  <label for="item_title">商品名称：</label>
+                  <input type="text" size="45" class="txt" id="item_title" name="item_title">
+                </li>
+                
+                <li>
+                  <label for="item_price">商品价格：</label>
+                  <input type="text" size="45" class="txt" id="item_price" name="item_price">
+                </li>
+                
+                <li>
+                  <label for="item_url">商品网址：</label>
+                  <input type="text" size="45" class="txt" id="item_url" name="item_url">
+                </li>
+                
+                <li>
+                  <label for="item_image_url">商品图片外链：</label>
+                  <input type="text" size="45" class="txt" id="item_image_url" name="item_image_url">
+                </li>
+                
+                <li>
+                  <label>&nbsp;</label>
+                  <input type="button" class="gbutton" value="预览" />&nbsp;
+                  <input type="submit" class="gbutton" value="保存" />
+                </li>
+            </ul>
+      </form>
+        </fieldset>
+          
+        <fieldset class="borderForm">
+          <legend>效果预览</legend>
+          <p style="text-align:center;">
+            <img src="images/anno_dim_draw_5.jpg" id="previewImg" /><br />
+            <a href="#">修改</a>
+          </p>
+        </fieldset>
+        
+        <br class="clearfloat" />
+      </div>
+      
+      <br class="clearfloat" />
+    </div>
+    
+    <div id="footer">&copy; 2010 Taotter</div>
+    
+  </div>
+  
+</body>
+</html>
