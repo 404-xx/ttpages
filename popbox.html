@@ -4,8 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>jQuery PopBox</title>
 <style type="text/css">
-
-a:link {
+#popup_box a:link {
 color:#336699;
 text-decoration:none;
 }
@@ -62,7 +61,7 @@ position:absolute;
 $(document).ready(function(){
 
   var popbox={
-    loading:function(){
+    setup:function(){
       var b=$("#popup_body");
       var bH=b.innerHeight();
       var bW=b.innerWidth();
@@ -71,19 +70,43 @@ $(document).ready(function(){
       b.css({"left":bL, "top":bT});
       $("#popup_bg").css({"height":bH+22,"width":bW+22,"left":bL-10,"top":bT-10,"z-index":100});
       $("#popup_box").css({"visibility":"visible"}).hide().fadeIn("slow");
+      return new Array(bH,bW,bL,bT);
+    },
+
+    clear:function(){
+      $("#popup_content").empty();
+      $("#popup_bg").removeAttr("style");
+      $("#popup_body").removeAttr("style");
+      $("#popup_box").removeAttr("style");
+    },
+
+    loading:function(){
+      popbox.setup();
+    },
+
+    insert:function(htmlStr){
+      $("#popup_content").html(htmlStr);
     },
     
+    show:function(){
+      $("#popup_loading").hide();
+      popbox.setup();
+    },
+
     close:function(){
       $("#popup_box").fadeOut("slow",function(){
-        $("#popup_content").empty();
-        $("#popup_bg").removeAttr("style");
-        $("#popup_body").removeAttr("style");
-        $(this).removeAttr("style");
+        popbox.clear();
       });
-    }
+    },
+
   }
   
-  $(".popbox").click(function(){popbox.loading();});
+  $("a.popbox").click(function(){
+    uri=$(this).attr("href");      
+    alert(uri);
+    popbox.loading();
+  });
+
   $("#popup_close").click(function(){popbox.close();});
 });
 </script>
